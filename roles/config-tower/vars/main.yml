@@ -41,5 +41,5 @@ job_template_name_3tier_app_aws: "3 tier app on Prod"
 aws_cred_name: "Creds for AWS instances"
 job_template_smoke_aws: "Smoke test Prod env"
 aws_smoke_app_playbook: site-smoketest-aws.yml
-opentlc_login: {{opentlc_login}}
+
 
