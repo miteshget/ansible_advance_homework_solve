@@ -52,7 +52,9 @@
 - name: Job template for 3tier AWS deploy
   command: |
     tower-cli job_template create --name "{{job_template_name_3tier_app_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}"  --vault-credential "yum-repo-cred"
-
+- name: Add survey to template
+  command: |
+    tower-cli job_template modify --name "{{job_template_name_3tier_app_aws}}" --survey-enabled=true  --survey-spec @survey.json
 - name: Job template for smoke test aws instances
   command: |
     tower-cli job_template create --name "{{job_template_smoke_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{aws_smoke_app_playbook}}" --vault-credential "yum-repo-cred"

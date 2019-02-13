@@ -1,0 +1,12 @@
+{
+    "question_name":"PROD GUID",
+    "question_description":"Enter Prod GUID",
+    "required":true,
+    "type":"text",
+    "variable":"OSP_GUID",
+    "min":null,
+    "max":null,
+    "default":"Check your mail to find PROD GUID",
+    "new_question":true
+}
+
