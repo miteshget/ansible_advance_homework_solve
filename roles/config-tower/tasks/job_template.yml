@@ -1,6 +1,6 @@
 - name: Job template for OSP Instances
   command: |
-    tower-cli job_template create --name "{{job_template_name_osp_instances}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_instances_playbook}}" --credential "{{ssh_cred_name}}" --extra-vars @/tmp/tower_info.yml
+    tower-cli job_template create --name "{{job_template_name_osp_instances}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_instances_playbook}}" --credential "{{ssh_cred_name}}" 
 
 - name: Associate IG to OSP instances job template 
   command: |
@@ -51,8 +51,7 @@
 
 - name: Job template for 3tier AWS deploy
   command: |
-    tower-cli job_template create --name "{{job_template_name_3tier_app_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}"  --vault-credential "yum-repo-cred" --survey-enabled=true  --survey-spec @/tmp/survey.json
-
+    tower-cli job_template create --name "{{job_template_name_3tier_app_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}"  --vault-credential "yum-repo-cred" 
 # - name: Job template for 3tier AWS deploy
 #   command: |
 #     tower-cli job_template modify --name "{{job_template_name_3tier_app_aws}}"  --survey-enabled=true  --survey-spec @survey.json
