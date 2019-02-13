@@ -3,16 +3,6 @@
 
 * From the cloned repo run `site-config-tower.yml` playbook to create job templates and workflow template.
 
-[source,text]
-----
-
-[bastion]# OPENTLC_PASSWORD=<your openlc account password>
-[bastion]# GITHUB_REPO=https://github.com/<githubhandler>/ansible_advance_homework
-[bastion]# JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
-[bastion]# REGION=<enter region name example us-east-1>
-[bastion]# RH_MAIL_ID=<your mail id for dynamic inventory tag>
-[bastion]# ansible-playbook site-config-tower.yml -e tower_GUID=${TOWER_GUID} -e osp_GUID=${OSP_GUID} -e opentlc_login=${OPENTLC_LOGIN} -e path_to_opentlc_key=/root/.ssh/mykey.pem -e param_repo_base=${JQ_REPO_BASE} -e opentlc_password=${OPENTLC_PASSWORD} -e REGION_NAME=${REGION} -e EMAIL=${RH_MAIL_ID} -e github_repo=${GITHUB_REPO}
-----
 
 [source,text]
 ----
@@ -20,17 +10,38 @@ laptop]# scp -i /home/<username>/.ssh/your-key.pem /home/<username>/.ssh/your-ke
 laptop]# ssh -i /home/<username>/.ssh/your-key.pem  username-company.name@bastion.<GUID>.example.com
 bastion]$  sudo -i
 bastion]# cp /tmp/<your-key.pem>  /root/.ssh/mykey.pem
-bastion]# git clone https://github.com/miteshrh/ansible_advance_examples.git
-bastion]# cd ansible_advance_examples/05_ansible_advance_homework
-bastion]# vim 00_rc
-    TOWER_GUID=358e
-    OSP_GUID=e9a4
-    OPENTLC_LOGIN=user-company.name
-    RH_MAIL_ID=<opentlc-email@id>
-```
+bastion]# git clone https://github.com/miteshrh/ansible_advance_homework_solve.git
+bastion]# cd ansible_advance_homework)_solve
+bastion]# cat 00_rc
+    TOWER_GUID=<bastion env GUID>
+    OSP_GUID=<openstack env GUID>
+    PRIVATE_KEY=~/.ssh/mykey.pem
+    OPENTLC_LOGIN=<opentlc-username>
+    OPENTLC_PASSWORD=<password>
+    GITHUB_REPO=https://github.com/miteshrh/ansible_advance_homework_solve.git
+    JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
+    REGION=us-east-1
+    RH_MAIL_ID=<username@company.name>
+
+    GLOBAL_VARS="
+            OSP_GUID=${OSP_GUID}
+            GUID=${TOWER_GUID}
+        ansible_user=${OPENTLC_LOGIN}
+            ansible_ssh_private_key_file=${PRIVATE_KEY}
+            opentlc_login=${OPENTLC_LOGIN}
+        opentlc_password=${OPENTLC_PASSWORD}
+        param_repo_base=${GITHUB_REPO}
+        tower_GUID=${TOWER_GUID}
+        path_to_opentlc_key=${PRIVATE_KEY}
+        github_repo=${GITHUB_REPO}
+        osp_GUID=${OSP_GUID}
+        REGION_NAME=${REGION}
+        EMAIL=${RH_MAIL_ID}
+        “      
+
 bastion]# source 00_rc
 
-bastion]# ansible-playbook   <Playbook> -e OSP_GUID=${OSP_GUID} -e GUID=${TOWER_GUID} -e ansible_user=${OPENTLC_LOGIN}
+bastion]# ansible-playbook   00_main_playbook.yml -e ${GLOBAL_VARS}
 
 ----
 
@@ -40,26 +51,19 @@ bastion]# ansible-playbook   <Playbook> -e OSP_GUID=${OSP_GUID} -e GUID=${TOWER_
 |===
 | Files or dir | Purpose
 | 00_rc | Run command file to setup variables
-| 00_site-setup-workstation.yml | Playbook to call role
-| 01_site-install-isolated-node.yml | Playbook to install isolated node
-| 02_site-osp-instances.yml | Playbook to call role
-
-| 03_site-3tier-app.yml | Playbook to deploy three tier app
-
+| 01_site-setup-workstation.yml | Playbook to call role
+| 02_site-install-isolated-node.yml | Playbook to install isolated node
+| 03_site-setup-openstack.yml | setup openstack env
 | 04_site-config-tower.yml | Playbook to call role `config-tower`
+| site-osp-instances.yml | Playbook to call role
+| site-3tier-app.yml | Playbook to deploy three tier app
 | site-osp-delete.yml | Playbook to call role
-
 | site-smoke-osp.yml | Playbook to test three tier app on OSP
 | site-smoketest-aws.yml | Playbook to test three tier app on AWS
 | roles/config-tower/vars/main.yml | Very important file to review. All the variable values are set there. Please do not make any changes in the file
-
 | aws_creds.yml | Fetch GUIDkey.pem from bastion of Three tier application env and create machine credential to connect to AWS instances
-
 | aws_provision.yml | Use `order_svc.sh` script to provision env
-
 | aws_status_check.yml | Check aws instances are up or not
-
-
 | grading-script.yml | Self grading script
 | roles/config-tower/tasks/ec2_dynamic.yml | For creating Dynamic inventory in Ansible tower. Use `AWS Access Key` for credential
 | roles/config-tower/tasks/job_template.yml | For creating job templates
