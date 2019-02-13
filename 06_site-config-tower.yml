@@ -1,5 +1,22 @@
 - hosts: localhost
   gather_facts: false 
   become: yes 
+  pre_tasks:
+    - name: Download Private key
+      get_url:
+        url: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pem
+        dest: /root/.ssh/
+        owner: root
+        group: root
+        mode: 0400
+
+    - name: Download Public key
+      get_url:
+        url: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+        dest: /root/.ssh/
+        owner: root
+        group: root
+        mode: 0400
+
   roles:
     - config-tower
