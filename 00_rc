@@ -1,0 +1,14 @@
+TOWER_GUID=f3b7
+OSP_GUID=804f
+PRIVATE_KEY=~/.ssh/mykey.pem
+OPENTLC_LOGIN=mitsharm-redhat.com
+#OPENTLC_PASSWORD=
+#GITHUB_REPO=https://github.com/<githubhandler>/ansible_advance_homework
+#JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
+REGION=us-east-1
+RH_MAIL_ID=mitsharm@redhat.com
+GLOBAL_VARS="
+        OSP_GUID=${OSP_GUID} 
+        GUID=${TOWER_GUID} 
+        ansible_user=${OPENTLC_LOGIN} 
+	ansible_ssh_private_key_file=${PRIVATE_KEY}"

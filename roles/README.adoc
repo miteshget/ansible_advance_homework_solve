@@ -1,0 +1,19 @@
+
+.List of roles
+[%header,cols=2*]
+|===
+
+| Roles | Purpose
+| app-tier | Install application server role
+| db-tier  | Install postgressql server for database role
+| lb-tier  | Install HA proxy role
+| apache   | Install Apache server
+| base-config | Setup yum repo and base packages role
+| config-tower| Role to configure ansible tower job templates and workflow
+| os-servers | Provision OSP Instances role
+| osp-facts  | Genrate in-memory inventory for OSP instances role
+| osp-instance-delete | Delete OSP Instances role
+| setup-workstation | Setup workstation creates clouds.yml and install pacakges.
+| setup-openstack | Setup openstack env, create network, ssh keypair, security group etc.
+| setup-instance | Creates instances frontend, app1, app2 and db.
+|===

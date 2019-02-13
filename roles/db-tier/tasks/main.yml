@@ -1,0 +1,27 @@
+---
+# tasks file for roles/postgresql
+- name: install postgres
+  yum:
+    name: postgresql-server
+    state: latest
+
+- name: tell user to finish setting up postgres
+  debug:
+    msg: "Either uncomment the postgres setup or manually login and initialize"
+
+# test postgresql Initilization
+- name: Check database initialization
+  command: postgresql-check-db-dir  /var/lib/pgsql/data
+  register: check_db_output
+  changed_when: check_db_output == 1
+  ignore_errors: yes
+  
+- name: initilize postgres
+  shell: postgresql-setup initdb
+  when: check_db_output.rc != 0
+
+- name: start postgres
+  service:
+    name: postgresql
+    enabled: yes
+    state: started

@@ -1,0 +1,45 @@
+---
+# tasks file for roles/tomcat
+- name: install tomcat
+  yum:
+    name: tomcat
+    state: latest
+
+- name: create ansible tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+
+- block:
+  - name: create ansible tomcat directory
+    file:
+        path: /usr/share/tomcat/webapps/ansible
+        state: directory
+  - name: copy static index.html to tomcat webapps/ansible/index.html
+    template:
+        src: index.html.app1
+        dest: /usr/share/tomcat/webapps/ansible/index.html
+  when: inventory_hostname == "app1"
+
+- block:
+  - name: create ansible tomcat directory
+    file:
+        path: /usr/share/tomcat/webapps/ansible
+        state: directory
+  - name: copy static index.html to tomcat webapps/ansible/index.html
+    template:
+        src: index.html.app1
+        dest: /usr/share/tomcat/webapps/ansible/index.html
+  when: inventory_hostname == "app2"
+
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
