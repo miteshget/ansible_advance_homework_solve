@@ -18,3 +18,9 @@
   copy:
     src: inventory_vars.json
     dest: /root/inventory_vars.json
+
+- name: Copy inventory vars
+  copy:
+    src: survey.json
+    dest: /root/survey.json
+

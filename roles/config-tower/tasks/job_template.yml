@@ -51,7 +51,7 @@
 
 - name: Job template for 3tier AWS deploy
   command: |
-    tower-cli job_template create --name "{{job_template_name_3tier_app_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}"  --vault-credential "yum-repo-cred" --survey-enabled=true  --survey-spec @survey.json
+    tower-cli job_template create --name "{{job_template_name_3tier_app_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}"  --vault-credential "yum-repo-cred" --survey-enabled=true  --survey-spec @/tmp/survey.json
 
     - name: Job template for 3tier AWS deploy
   command: |
