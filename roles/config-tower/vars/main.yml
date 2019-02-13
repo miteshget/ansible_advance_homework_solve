@@ -13,11 +13,11 @@ static_inventory_name: scm_inventory
 instance_group_name: osp
 workflow_template_name: cicd_workflow
 job_template_name_osp_instances: "Provision QA Env"
-osp_instances_playbook: site-osp-instances.yml
+osp_instances_playbook: 04_site-osp-instances.yml
 group_name: workstation
 host_name: workstation-{{osp_GUID}}.rhpds.opentlc.com
 job_template_name_3tier_app: "3tier app deployment on QA Env"
-app_deploy_playbook: site-3tier-app.yml
+app_deploy_playbook: 05_site-3tier-app.yml
 vault_name: yum_repo_vault
 job_template_name_osp_instances_delete: "Nuke QA Env"
 osp_instances_delete_playbook: site-osp-delete.yml
