@@ -9,18 +9,18 @@
         state: directory
     - name: get script common.sh
       get_url:
-        url: "{{ param_repo_base }}/tree/master/scripts/common.sh"
+        url: "{{ param_repo_base }}/scripts/common.sh"
         dest: /root/common.sh
         mode: 0755
 
     - name: get script jq
       get_url: 
-        url: "{{ param_repo_base }}/tree/master/scripts/jq-linux64"
+        url: "{{ param_repo_base }}/scripts/jq-linux64"
         dest: /root/bin/jq
         mode: 0755
     - name: get script order_svc.sh
       get_url:
-        url: "{{ param_repo_base }}/tree/master/scripts/order_svc.sh"
+        url: "{{ param_repo_base }}/scripts/order_svc.sh"
         dest: /root/order_svc.sh
         mode: 0755
     - name: create credentials
