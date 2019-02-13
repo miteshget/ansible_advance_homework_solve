@@ -24,11 +24,11 @@ bastion]# cat 00_rc
     RH_MAIL_ID=<username@company.name>
 
     GLOBAL_VARS="
-            OSP_GUID=${OSP_GUID}
-            GUID=${TOWER_GUID}
+        OSP_GUID=${OSP_GUID}
+        GUID=${TOWER_GUID}
         ansible_user=${OPENTLC_LOGIN}
-            ansible_ssh_private_key_file=${PRIVATE_KEY}
-            opentlc_login=${OPENTLC_LOGIN}
+        ansible_ssh_private_key_file=${PRIVATE_KEY}
+        opentlc_login=${OPENTLC_LOGIN}
         opentlc_password=${OPENTLC_PASSWORD}
         param_repo_base=${GITHUB_REPO}
         tower_GUID=${TOWER_GUID}
