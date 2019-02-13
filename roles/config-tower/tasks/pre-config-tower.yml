@@ -22,5 +22,5 @@
 - name: Copy inventory vars
   copy:
     src: survey.json
-    dest: /root/survey.json
+    dest: /tmp/survey.json
 
