@@ -33,7 +33,7 @@
   - name: Update Prod Job template
     tower_job_template:
       name: "3 tier app on Prod"
-      machine_credential: "Creds for AWS instances"
+      credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
       tower_password: r3dh4t1!
@@ -45,7 +45,7 @@
   - name: Update Prod Smoke Job template
     tower_job_template:
       name: "Smoke test Prod env"
-      machine_credential: "Creds for AWS instances"
+      credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
       tower_password: r3dh4t1!
