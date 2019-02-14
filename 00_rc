@@ -1,14 +1,25 @@
-TOWER_GUID=f3b7
-OSP_GUID=804f
+TOWER_GUID=<bastion env GUID>
+OSP_GUID=<openstack env GUID>
 PRIVATE_KEY=~/.ssh/mykey.pem
-OPENTLC_LOGIN=mitsharm-redhat.com
-#OPENTLC_PASSWORD=
-#GITHUB_REPO=https://github.com/<githubhandler>/ansible_advance_homework
-#JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
+OPENTLC_LOGIN=<opentlc-username>
+OPENTLC_PASSWORD=<password>
+GITHUB_REPO=https://github.com/miteshrh/ansible_advance_homework_solve.git
+JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
 REGION=us-east-1
-RH_MAIL_ID=mitsharm@redhat.com
+RH_MAIL_ID=<username@company.name>
+
 GLOBAL_VARS="
-        OSP_GUID=${OSP_GUID} 
-        GUID=${TOWER_GUID} 
-        ansible_user=${OPENTLC_LOGIN} 
-	ansible_ssh_private_key_file=${PRIVATE_KEY}"
+        OSP_GUID=${OSP_GUID}
+        GUID=${TOWER_GUID}
+  	ansible_user=${OPENTLC_LOGIN}
+        ansible_ssh_private_key_file=${PRIVATE_KEY}
+        opentlc_login=${OPENTLC_LOGIN}
+	opentlc_password=${OPENTLC_PASSWORD}
+	param_repo_base=${GITHUB_REPO}
+	tower_GUID=${TOWER_GUID}
+	path_to_opentlc_key=${PRIVATE_KEY}
+	github_repo=${GITHUB_REPO}
+	osp_GUID=${OSP_GUID}
+	REGION_NAME=${REGION}
+	EMAIL=${RH_MAIL_ID}
+	“      
