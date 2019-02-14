@@ -1,4 +1,4 @@
-- hosts: workstation
+- hosts: all
   gather_facts: true
   roles:
   - name: osp-facts
