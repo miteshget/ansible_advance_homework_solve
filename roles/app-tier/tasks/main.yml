@@ -34,7 +34,7 @@
         state: directory
   - name: copy static index.html to tomcat webapps/ansible/index.html
     template:
-        src: index.html.app1
+        src: index.html.app2
         dest: /usr/share/tomcat/webapps/ansible/index.html
   when: inventory_hostname == "app2"
 
