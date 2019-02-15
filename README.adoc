@@ -22,7 +22,6 @@ bastion]# cat 00_rc
     JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
     REGION=us-east-1
     RH_MAIL_ID=<username@company.name>
-
     GLOBAL_VARS="
         OSP_GUID=${OSP_GUID}
         GUID=${TOWER_GUID}
@@ -38,10 +37,9 @@ bastion]# cat 00_rc
         REGION_NAME=${REGION}
         EMAIL=${RH_MAIL_ID}
         “      
-
 bastion]# source 00_rc
 
-bastion]# ansible-playbook   00_main_playbook.yml -e ${GLOBAL_VARS}
+bastion]# ansible-playbook   00_main_playbook.yml -e "${GLOBAL_VARS}"
 
 ----
 
