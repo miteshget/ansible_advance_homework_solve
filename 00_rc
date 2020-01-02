@@ -19,7 +19,7 @@ GLOBAL_VARS="
 	tower_GUID=${TOWER_GUID}
 	path_to_opentlc_key=${PRIVATE_KEY}
 	github_repo=${GITHUB_REPO}
-	osp_GUID=${OSP_GUID}
+	OSP_GUID=${OSP_GUID}
 	REGION_NAME=${REGION}
 	EMAIL=${RH_MAIL_ID}
-	“      
+	“
